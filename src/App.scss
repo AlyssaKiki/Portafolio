@@ -1,0 +1,156 @@
+// Variables de colores
+$red: #FF3B3B;
+$dark-red: #CC0000;
+$beige-light: #F5F5DC;
+$beige-dark: #E0D8C0;
+$black: #000000;
+$black-light: #1A1A1A;
+$white: #FFFFFF;
+$white-warm: #F8F8F8;
+
+// Mixins para reutilización
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin full-size {
+  width: 100%;
+  height: 100%;
+}
+
+// Estilos globales
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: $beige-light;
+  color: $black;
+}
+
+.app {
+  @include full-size;
+  overflow-x: hidden;
+}
+
+// Sección "KIM"
+.hero-section {
+  @include flex-center;
+  @include full-size;
+  position: relative;
+  height: 100vh;
+  background-color: $black-light;
+
+  .kim-text {
+    font-size: 10rem;
+    color: $white;
+    position: absolute;
+    z-index: 2;
+  }
+
+  .hero-image {
+    @include full-size;
+    object-fit: cover;
+    position: absolute;
+    z-index: 1;
+  }
+}
+
+// Texto en bucle
+.text-loop {
+  position: relative;
+  overflow: hidden;
+  background-color: $beige-dark;
+  padding: 2rem 0;
+
+  .top-text,
+  .bottom-text {
+    font-size: 4rem;
+    white-space: nowrap;
+    color: $black;
+  }
+
+  .top-text {
+    animation: moveLeft 10s linear infinite;
+  }
+
+  .bottom-text {
+    animation: moveRight 10s linear infinite;
+  }
+}
+
+@keyframes moveLeft {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes moveRight {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+// Botón "Hire me now"
+.hire-me-button {
+  @include flex-center;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 2px solid $red;
+  background-color: transparent;
+  color: $black;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+
+  &:hover {
+    background-color: $red;
+    color: $white;
+  }
+}
+
+// Sección "About"
+.about-section {
+  @include flex-center;
+  flex-direction: column;
+  height: 100vh;
+  background-color: $white-warm;
+  padding: 2rem;
+  text-align: center;
+
+  h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+    max-width: 600px;
+  }
+}
+
+// Caja "Estilo Ventana"
+.window-box {
+  @include flex-center;
+  height: 100vh;
+  background-color: $black-light;
+  padding: 2rem;
+
+  .window-video {
+    width: 80%;
+    max-width: 600px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+}
